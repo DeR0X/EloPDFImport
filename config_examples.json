@@ -1,0 +1,127 @@
+{
+  "description": "Example configurations for different environments",
+  "environments": {
+    "development": {
+      "settings": {
+        "sourceDirectory": "C:\\dev\\pdf_import_dev",
+        "archivePath": "¶Test\\Eingangsrechnungen",
+        "metadataMask": "Eingangsrechnung",
+        "workflowTemplate": "dps.invoice.Base",
+        "processedDirectory": "C:\\dev\\pdf_import_dev\\processed",
+        "errorDirectory": "C:\\dev\\pdf_import_dev\\error",
+        "intervalSeconds": 10,
+        "logging": {
+          "level": "DEBUG",
+          "scope": "PDFImportService_DEV"
+        }
+      },
+      "fileFilters": {
+        "extensions": [".pdf"],
+        "maxFileSizeMB": 10,
+        "excludePatterns": ["test_*", ".*", "temp_*"]
+      },
+      "eloConnection": {
+        "timeout": 15000,
+        "retryAttempts": 2
+      }
+    },
+    "test": {
+      "settings": {
+        "sourceDirectory": "C:\\test\\pdf_import",
+        "archivePath": "¶Test\\Eingangsrechnungen",
+        "metadataMask": "Eingangsrechnung",
+        "workflowTemplate": "dps.invoice.Base.Test",
+        "processedDirectory": "C:\\test\\pdf_import\\processed",
+        "errorDirectory": "C:\\test\\pdf_import\\error",
+        "intervalSeconds": 30,
+        "logging": {
+          "level": "INFO",
+          "scope": "PDFImportService_TEST"
+        }
+      },
+      "fileFilters": {
+        "extensions": [".pdf"],
+        "maxFileSizeMB": 25,
+        "excludePatterns": ["temp_*", ".*"]
+      },
+      "eloConnection": {
+        "timeout": 20000,
+        "retryAttempts": 3
+      }
+    },
+    "production": {
+      "settings": {
+        "sourceDirectory": "D:\\ELO\\Import\\Eingangsrechnungen",
+        "archivePath": "¶Eingangsrechnungen",
+        "metadataMask": "Eingangsrechnung",
+        "workflowTemplate": "dps.invoice.Base",
+        "processedDirectory": "D:\\ELO\\Import\\Eingangsrechnungen\\processed",
+        "errorDirectory": "D:\\ELO\\Import\\Eingangsrechnungen\\error",
+        "intervalSeconds": 30,
+        "logging": {
+          "level": "INFO",
+          "scope": "PDFImportService_PROD"
+        }
+      },
+      "fileFilters": {
+        "extensions": [".pdf"],
+        "maxFileSizeMB": 50,
+        "excludePatterns": ["temp_*", ".*", "backup_*"]
+      },
+      "eloConnection": {
+        "timeout": 30000,
+        "retryAttempts": 3
+      }
+    },
+    "high_volume": {
+      "description": "Configuration for high-volume processing environments",
+      "settings": {
+        "sourceDirectory": "D:\\ELO\\Import\\HighVolume",
+        "archivePath": "¶Eingangsrechnungen\\Bulk",
+        "metadataMask": "Eingangsrechnung",
+        "workflowTemplate": "dps.invoice.Base.Bulk",
+        "processedDirectory": "D:\\ELO\\Import\\HighVolume\\processed",
+        "errorDirectory": "D:\\ELO\\Import\\HighVolume\\error",
+        "intervalSeconds": 15,
+        "logging": {
+          "level": "WARN",
+          "scope": "PDFImportService_BULK"
+        }
+      },
+      "fileFilters": {
+        "extensions": [".pdf"],
+        "maxFileSizeMB": 100,
+        "excludePatterns": ["temp_*", ".*", "processing_*"]
+      },
+      "eloConnection": {
+        "timeout": 45000,
+        "retryAttempts": 5
+      }
+    }
+  },
+  "usage_instructions": {
+    "step1": "Copy the desired environment configuration from above",
+    "step2": "Paste it into config.json (remove the environment wrapper)",
+    "step3": "Adjust paths and settings according to your environment",
+    "step4": "Ensure all directories exist and have proper permissions",
+    "step5": "Test the configuration with a sample PDF file"
+  },
+  "common_customizations": {
+    "different_masks": {
+      "description": "Use different metadata masks based on file naming",
+      "example": "Check filename prefix and assign appropriate mask"
+    },
+    "multiple_workflows": {
+      "description": "Start different workflows based on document type",
+      "example": "Invoice vs. Receipt workflows"
+    },
+    "metadata_extraction": {
+      "description": "Extract metadata from PDF content",
+      "example": "Parse invoice number, date, amount from PDF"
+    },
+    "email_notifications": {
+      "description": "Send notifications on processing events",
+      "example": "Email on errors or daily summary reports"
+    }
+  }
+}

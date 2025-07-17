@@ -1,0 +1,25 @@
+{
+  "description": "Configuration file for ELO AS PDF Import Service",
+  "settings": {
+    "sourceDirectory": "C:\\temp\\pdf_import",
+    "archivePath": "¶Eingangsrechnungen",
+    "metadataMask": "Eingangsrechnung",
+    "workflowTemplate": "dps.invoice.Base",
+    "processedDirectory": "C:\\temp\\pdf_import\\processed",
+    "errorDirectory": "C:\\temp\\pdf_import\\error",
+    "intervalSeconds": 30,
+    "logging": {
+      "level": "INFO",
+      "scope": "PDFImportService"
+    }
+  },
+  "fileFilters": {
+    "extensions": [".pdf"],
+    "maxFileSizeMB": 50,
+    "excludePatterns": ["temp_*", ".*"]
+  },
+  "eloConnection": {
+    "timeout": 30000,
+    "retryAttempts": 3
+  }
+}
